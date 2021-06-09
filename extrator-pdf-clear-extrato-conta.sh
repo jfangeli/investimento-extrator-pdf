@@ -9,13 +9,13 @@
 
 DIR=`pwd`;
 TMP_DIR="$DIR/tmp/extrato-conta";
-DESCRICAO=`echo $1 | sed s/'clear\-extrato\-conta'//g`;
+DESCRICAO=`echo $1 | sed s/'clear\-extrato\-conta'//g | sed s/'\.pdf'//g`;
 
 #extrai para texto
 java -jar pdfbox-app-2.0.23.jar ExtractText $1 $TMP_DIR/clear-saida.txt
 if [ $? -ne 0 ]; then
   echo "$1 Erro extracao";
-  return -1
+  exit 1
 fi
 
 #extrai apenas os lancamentos localizando registros com data 'DD/MM/YYYY DD/MM/YYYY xxxxxxx R$xxxx'
@@ -48,5 +48,8 @@ cat $TMP_DIR/clear-saida-lancamentos.txt | grep -E '(RENDIMENTO).*(PAPEL)' > $TM
 cat $TMP_DIR/clear-saida-fii-proventos.txt | awk -F" " '{print $1,$7,"D",$5,$8,"0;CLEAR PROVENTO"}' OFS=';' > clear-fii-proventos$DESCRICAO.csv
 
 
+#TODO ------------Subscricao
 
-#------------Aluguel BTC
+#TODO ------------Aluguel BTC
+
+exit 0

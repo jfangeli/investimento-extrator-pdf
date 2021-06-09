@@ -14,7 +14,7 @@ TMP_DIR="$DIR/tmp/nota-negociacao";
 java -jar pdfbox-app-2.0.23.jar ExtractText $1 $TMP_DIR/clear-saida-nota-negociacao.txt
 if [ $? -ne 0 ]; then
   echo "$1 Erro extracao";
-  return -1
+  exit 1
 fi
 
 #extrai apenas as negociacoes localizando registros
@@ -94,3 +94,4 @@ do
   
 done < $TMP_DIR/clear-saida-fii-nota-negociacao-$DATA_PREGAO_.txt
 
+exit 0

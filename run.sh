@@ -102,15 +102,20 @@ IFS=',' read -r -a ARRAY <<< "$CORRETORAS";
 for i in "${ARRAY[@]}"; do
   case $i in
     'xp'|'clear'|'easynvest') 	   
-	   extrair $i;
-	   agrupar_acao $i;
-	   agrupar_fii $i;
+	   extrair $i;  
 	   ;;
 	'limpar') 
        limpar_todos $i;	
 	   echo 'Arquivos limpos';
+	   exit 0
 	   ;;
-    *) echo "$i nao suportada, digite xp,clear,easynvest"  
+    *) echo "$i nao suportada, digite xp,clear,easynvest";
+	   exit 1
 	  ;;
   esac
 done
+
+agrupar_acao;
+agrupar_fii;
+
+exit 0

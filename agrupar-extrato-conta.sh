@@ -66,7 +66,7 @@ agrupar_proventos_fii() {
   fi
 }
 
-limpar;
+#limpar;
 
 IFS=',' read -r -a ARRAY <<< "$CORRETORAS";
 for i in "${ARRAY[@]}"; do
@@ -83,3 +83,5 @@ for i in "${ARRAY[@]}"; do
 	  ;;
   esac
 done
+
+exit 0

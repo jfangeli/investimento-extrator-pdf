@@ -8,13 +8,13 @@
 
 DIR=`pwd`;
 TMP_DIR="$DIR/tmp/extrato-conta";
-DESCRICAO=`echo $1 | sed s/'xp\-extrato\-conta'//g`;
+DESCRICAO=`echo $1 | sed s/'xp\-extrato\-conta'//g | sed s/'\.pdf'//g`;
 
 #extrai para texto
 java -jar pdfbox-app-2.0.23.jar ExtractText $1 $TMP_DIR/xp-saida.txt
 if [ $? -ne 0 ]; then
   echo "$1 Erro extracao";
-  return -1
+  exit 1
 fi
 
 #extrai apenas os lancamentos localizando registros com data 'DD/MM/YYYY DD/MM/YYYY xxxxxxx R$xxxx'
@@ -48,4 +48,9 @@ cat $TMP_DIR/xp-saida-fii-proventos.txt | sed s/'\* PROV \* '// | sed s/'R\$'// 
 
 
 
-#------------Aluguel BTC
+#TODO ------------Subscricao
+
+#TODO ------------Aluguel BTC
+
+
+exit 0
