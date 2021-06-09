@@ -12,10 +12,10 @@ Permite realizar a extração de:
 Corretora | Notas de Negociação | Extrato Conta
 --------- | ------------------- | --------------
 Clear | SIM | SIM 
-XP | NÃO | SIM
-Easynvest | NÃO | SIM
-Rico | NÃO | NÃO
-Toro | NÃO | NAO
+XP | TO DO | SIM
+Easynvest | TO DO | SIM
+Rico | BACKLOG | BACKLOG
+Toro | BACKLOG | BACKLOG
     
 
 Agrupa todas os lançamentos das notas de negociações e extrato da conta em apenas um arquivo CSV para ações e FII.
