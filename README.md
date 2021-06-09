@@ -1,6 +1,6 @@
 # investimento-extrator-pdf
 
-Author: Juliano Francisco Angeli - jf.angeli@gmail.com
+Autor: Juliano Francisco Angeli - jf.angeli@gmail.com
 
 Licença: Apache License 2.0
 
