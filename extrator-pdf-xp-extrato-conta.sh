@@ -43,6 +43,8 @@ cat $TMP_DIR/xp-saida-acoes-jcp.txt | sed s/'\* PROV \* '// | sed s/'R\$'// | aw
 
 #extrai ACOES DIVIDENDOS
 cat $TMP_DIR/xp-saida-lancamentos.txt | grep -E '(DIVIDENDOS DE CLIENTE)' > $TMP_DIR/xp-saida-acoes-dividendo.txt
+#Tratamento para Rendimentos, nao trata UNIT
+cat $TMP_DIR/xp-saida-lancamentos.txt | grep -E '(RENDIMENTOS DE CLIENTE).*([A-Z]{4}(3|4|6))' >> $TMP_DIR/xp-saida-acoes-dividendo.txt
 #extrai ACOES DIVIDENDOS para csv formatando 'data;acao;D;quantidade;valor;0;DIVIDENDO;XP'
 cat $TMP_DIR/xp-saida-acoes-dividendo.txt | sed s/'\* PROV \* '// | sed s/'R\$'// | awk -F" " '{print $1,$6,"D",$8,$9,"0;;DIVIDENDO;XP"}' OFS=';' > $TMP_DIR/xp-saida-acoes-dividendo.csv
 
@@ -51,10 +53,12 @@ cat $TMP_DIR/xp-saida-acoes-jcp.csv $TMP_DIR/xp-saida-acoes-dividendo.csv |sort 
 
 
 
+
+
 #------------FII
 
 #extrai FII RENDIMENTOS
-cat $TMP_DIR/xp-saida-lancamentos.txt | grep -E '(RENDIMENTOS DE CLIENTE)' > $TMP_DIR/xp-saida-fii-proventos.txt
+cat $TMP_DIR/xp-saida-lancamentos.txt | grep -E '(RENDIMENTOS DE CLIENTE).*([A-Z]{4}(11|12|13|14))' > $TMP_DIR/xp-saida-fii-proventos.txt
 #extrai FII para csv formatando 'data;acao;D;quantidade;valor;0;XP PROVENTO'
 cat $TMP_DIR/xp-saida-fii-proventos.txt | sed s/'\* PROV \* '// | sed s/'R\$'// | awk -F" " '{print $1,$6,"D",$8,$9,"0;XP PROVENTO"}' OFS=';' > xp-fii-proventos$DESCRICAO.csv
 

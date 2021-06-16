@@ -37,6 +37,7 @@ cat $TMP_DIR/easynvest-saida.txt | grep -E '^([0-9][0-9]|0[0-9])\/([0-9][0-9]|0[
 #------------ACOES
 
 #extrai ACOES JCP e ajusta nomes das acoes
+#TODO Incluir configuracao acoes-ticker.cfg
 cat $TMP_DIR/easynvest-saida-lancamentos.txt | grep -E '(JUROS S\/ CAPITAL)' | sed s/'BRBRSRACNPB4'/'BRSR6'/ | sed s/'BRBBASACNOR3'/'BBAS3'/ | sed s/'BRITSAACNPR7'/'ITSA4'/ | sed s/'BRTIETCDAM15'/'AESB3'/ | sed s/'BRTAEECDAM10'/'TAEE11'/ > $TMP_DIR/easynvest-saida-acoes-jcp.txt
 #extrai ACOES JCP para csv formatando 'data;acao;D;quantidade;valor;0;JCP;EASYNVEST'
 cat $TMP_DIR/easynvest-saida-acoes-jcp.txt | awk -F" " '{print $1,$8,"D",$7,$10,"0;;JCP;EASYNVEST"}' OFS=';' > $TMP_DIR/easynvest-saida-acoes-jcp.csv
